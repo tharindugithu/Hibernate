@@ -16,9 +16,11 @@ public class App
 {
     public static void main( String[] args )
     {
+    	PersonName pname = new PersonName();
+    	
         Persons p = new Persons();
-        //p.setPid(14);
-        //p.setName("Chamikara");
+        p.setPid(01);
+        p.setName(pname);//name is now object
         
         Configuration con = new Configuration().configure().addAnnotatedClass(Persons.class);
         
