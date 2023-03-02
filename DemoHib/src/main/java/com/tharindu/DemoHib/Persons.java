@@ -9,7 +9,7 @@ public class Persons {
    @Id	
    private int pid;
    @Column(name = "p_name")
-   private String name;
+   private PersonName name;
 
 @Override
 public String toString() {
@@ -23,12 +23,15 @@ public int getPid() {
 public void setPid(int pid) {
 	this.pid = pid;
 }
-public String getName() {
+
+public PersonName getName() {
 	return name;
 }
-public void setName(String name) {
+
+public void setName(PersonName name) {
 	this.name = name;
 }
+
    
    
 }
