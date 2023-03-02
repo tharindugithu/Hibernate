@@ -28,7 +28,7 @@ public class App
         Session s = sf.openSession();
         Transaction tx = s.beginTransaction();
         
-        //s.save(p); //save the data in database	
+        //s.save(p); save the data in database	
         p = (Persons)s.get(Persons.class,14);//fetch the values in database
         tx.commit();
         System.out.println(p);
