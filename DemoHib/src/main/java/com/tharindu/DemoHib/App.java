@@ -16,8 +16,10 @@ public class App
 {
     public static void main( String[] args )
     {
-    	PersonName pname = new PersonName();
-    	
+    	PersonName pname = new PersonName();//create pname object and fill 3 fields
+    	pname.setFname("Tharindu");
+    	pname.setMnamel("Mandusanka");
+    	pname.setLname("Dissanayaka");
         Persons p = new Persons();
         p.setPid(01);
         p.setName(pname);//name is now object
@@ -30,10 +32,10 @@ public class App
         Session s = sf.openSession();
         Transaction tx = s.beginTransaction();
         
-        //s.save(p); save the data in database	
-        p = (Persons)s.get(Persons.class,14);//fetch the values in database
+        s.save(p);// save the data in database	
+       
         tx.commit();
-        System.out.println(p);
+       
         
         
     }

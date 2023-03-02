@@ -1,5 +1,8 @@
 package com.tharindu.DemoHib;
 
+import javax.persistence.Embeddable;
+
+@Embeddable  //dont create new table for me 
 public class PersonName {
    private String fname;
    private String lname;
