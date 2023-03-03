@@ -13,18 +13,18 @@ public class Student {
    private int rollno;
    private String name;
    private int marks;
-   @OneToMany
-   private List<Laptop> laptops = new ArrayList<Laptop>();
+   @OneToMany(mappedBy = "student")// u dont worry about mapping 
+   private List<Laptop> laptop = new ArrayList<Laptop>();
    
 @Override
 public String toString() {
-	return "Student [rollno=" + rollno + ", name=" + name + ", marks=" + marks + ", laptop=" + laptops + "]";
+	return "Student [rollno=" + rollno + ", name=" + name + ", marks=" + marks + ", laptop=" + laptop + "]";
 }
 public List<Laptop> getLaptop() {
-	return laptops;
+	return laptop;
 }
 public void setLaptop(List<Laptop> laptops) {
-	this.laptops = laptops;
+	this.laptop = laptops;
 }
 public int getRollno() {
 	return rollno;
