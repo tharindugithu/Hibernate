@@ -16,23 +16,27 @@ public class App
 {
     public static void main( String[] args )
     {
-    	PersonName pname = new PersonName();//create pname object and fill 3 fields
-    	pname.setFname("Tharindu");
-    	pname.setMnamel("Mandusanka");
-    	pname.setLname("Dissanayaka");
-        Persons p = new Persons();
-        p.setPid(01);
-        p.setName(pname);//name is now object
+    	Laptop laptop = new Laptop();
+    	laptop.setLid(101);
+    	laptop.setLname("MSI");
+    	
+    	Student s = new Student();
+    	s.setRollno(1);
+    	s.setName("Tharindu");
+    	s.setMarks(20);
+    	s.setLaptop(laptop);
         
-        Configuration con = new Configuration().configure().addAnnotatedClass(Persons.class);
+        Configuration con = new Configuration().configure().addAnnotatedClass(Student.class).addAnnotatedClass(Laptop.class);
         
         ServiceRegistry reg = new ServiceRegistryBuilder().applySettings(con.getProperties()).buildServiceRegistry();
         
         SessionFactory sf = con.buildSessionFactory(reg);
-        Session s = sf.openSession();
-        Transaction tx = s.beginTransaction();
+        Session session = sf.openSession();
+        Transaction tx = session.beginTransaction();
         
-        s.save(p);// save the data in database	
+        session.save(laptop);
+        session.save(s);
+        //s.save(p);// save the data in database	
        
         tx.commit();
        
