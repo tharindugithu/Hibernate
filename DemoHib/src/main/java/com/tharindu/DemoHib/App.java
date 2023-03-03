@@ -24,7 +24,7 @@ public class App
     	s.setRollno(1);
     	s.setName("Tharindu");
     	s.setMarks(20);
-    	s.setLaptop(laptop);
+    	s.getLaptop().add(laptop);
         
         Configuration con = new Configuration().configure().addAnnotatedClass(Student.class).addAnnotatedClass(Laptop.class);
         
