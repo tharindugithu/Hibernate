@@ -1,12 +1,8 @@
 package com.tharindu.DemoHib;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Laptop {
@@ -14,13 +10,13 @@ public class Laptop {
    private int lid;
    private String lname;
    //one student has multiple laptops and one laptop has one student
-   @ManyToMany
-   private  List<Student> student = new ArrayList<Student>();
+   @ManyToOne
+   private Student student;
    
-public List<Student> getStudent() {
+public Student getStudent() {
 	return student;
 }
-public void setStudent(List<Student> student) {
+public void setStudent(Student student) {
 	this.student = student;
 }
 public int getLid() {
@@ -28,6 +24,10 @@ public int getLid() {
 }
 public void setLid(int lid) {
 	this.lid = lid;
+}
+@Override
+public String toString() {
+	return "Laptop [lid=" + lid + ", lname=" + lname + ", student=" + student + "]";
 }
 public String getLname() {
 	return lname;

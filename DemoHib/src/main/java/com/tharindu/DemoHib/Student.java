@@ -5,8 +5,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-
+import javax.persistence.OneToMany;
 
 @Entity
 public class Student {
@@ -14,7 +13,7 @@ public class Student {
    private int rollno;
    private String name;
    private int marks;
-   @ManyToMany(mappedBy = "student")// u dont worry about mapping 
+   @OneToMany(mappedBy = "student")
    private List<Laptop> laptop = new ArrayList<Laptop>();
    
 @Override
