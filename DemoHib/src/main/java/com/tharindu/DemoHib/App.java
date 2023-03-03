@@ -25,7 +25,7 @@ public class App
     	s.setName("Tharindu");
     	s.setMarks(20);
     	s.getLaptop().add(laptop);//add laptop in list
-        
+        laptop.setStudent(s);
         Configuration con = new Configuration().configure().addAnnotatedClass(Student.class).addAnnotatedClass(Laptop.class);
         
         ServiceRegistry reg = new ServiceRegistryBuilder().applySettings(con.getProperties()).buildServiceRegistry();
