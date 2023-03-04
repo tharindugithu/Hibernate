@@ -1,10 +1,16 @@
 package com.tharindu.DemoHib;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 @Entity
+@Cacheable  //not all classes allow to get cache. we allow to do that
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)//multiple statergies read_only,none,read_write .this how to change strategy
 public class Laptop {
    @Id	
    private int lid;

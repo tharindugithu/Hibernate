@@ -26,7 +26,7 @@ public class App
         
         SessionFactory sf = con.buildSessionFactory(reg);
         
-        
+
         /////////////firing query only one time because hibernate default store cache inside first level caching /////////
         //Laptop laptop = new Laptop();
         
@@ -45,30 +45,30 @@ public class App
         
         
         /////////firing query two time because we need second level caching////////////////////
-        //Laptop laptop = new Laptop();
-        //Transaction tx;
+        Laptop laptop = new Laptop();
+        Transaction tx;
         
-        //Session session = sf.openSession();/////////create session 1////////////////////
+        Session session = sf.openSession();/////////create session 1////////////////////
 
-        //tx = session.beginTransaction();
+        tx = session.beginTransaction();
      
-        //laptop = (Laptop) session.get(Laptop.class, 103);
+        laptop = (Laptop) session.get(Laptop.class, 103);
         
-        //tx.commit();
+        tx.commit();
         //or
         //session.getTransaction().commit();
-        //session.close();
+        session.close();
         
        
-        //Session session2 = sf.openSession(); /////////create session 2////////////////////
-        //tx = session2.beginTransaction();        
+        Session session2 = sf.openSession(); /////////create session 2////////////////////
+        tx = session2.beginTransaction();        
         
-        //laptop = (Laptop) session2.get(Laptop.class, 103);
+        laptop = (Laptop) session2.get(Laptop.class, 103);
         
-        //tx.commit();
+        tx.commit();
         //or
         //session2.getTransaction().commit();
-        // session2.close();
+        session2.close();
         
         
         
