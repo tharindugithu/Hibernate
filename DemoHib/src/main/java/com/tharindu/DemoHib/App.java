@@ -53,7 +53,7 @@ public class App
         tx = session.beginTransaction();
      
         laptop = (Laptop) session.get(Laptop.class, 103);
-        
+        System.out.println(laptop.getLname());
         tx.commit();
         //or
         //session.getTransaction().commit();
@@ -64,7 +64,7 @@ public class App
         tx = session2.beginTransaction();        
         
         laptop = (Laptop) session2.get(Laptop.class, 103);
-        
+        System.out.println(laptop.getLname());
         tx.commit();
         //or
         //session2.getTransaction().commit();
