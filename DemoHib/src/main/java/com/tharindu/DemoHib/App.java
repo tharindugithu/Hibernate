@@ -2,8 +2,11 @@ package com.tharindu.DemoHib;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -27,38 +30,30 @@ public class App
         
         SessionFactory sf = con.buildSessionFactory(reg);
         
-   
+        //Native query
 
         Transaction tx;
         
-        Session session = sf.openSession();/////////create session 1////////////////////
+        Session session = sf.openSession();
         tx = session.beginTransaction();
-        
-        
-        //difference between SQL and HQL ---> 
-           /*
-            * 1. HQL use class name for Table in SQL
-            * from Laptop ---> fetch all the laptop details
-            * 
-            * 
-            * */
-        
-        
-        //fetch specific data
-//        Query q1 =  session.createQuery("select lid,lname,student from Laptop where lid=101");
-//        Object[] l = (Object[]) q1.uniqueResult(); 
-//        System.out.println(l[2]);
-        
-        //fetch list of data using HQL
-        Query q1 =  session.createQuery("from Laptop order by lname asc");
-        List laptops =  q1.list();
+        ////////////fetching entire row in table////////////////////////
+//        SQLQuery sqlQuery = session.createSQLQuery("select * from laptop where lid=101");
+//        sqlQuery.addEntity(Laptop.class);
+//        List <Laptop> laptops = sqlQuery.list();
 //        for(Laptop l : laptops) {
-//        	Student s = new Student();
-//        	s=l.getStudent();
-//        	System.out.println("Laptop [lid=" + l.getLid() + ", lname=" + l.getLname() + "sname "+s.getName() + "]");
+//        	System.out.println(l.getLname());
 //        }
+        /////////////////fetching specific colounm///////////////////
+        SQLQuery sqlQuery = session.createSQLQuery("select lid,lname from laptop");
+        sqlQuery.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);//this will convert to output in MAP format
         
-    
+        List laptops = sqlQuery.list();// not a student obj
+        
+        for(Object obj : laptops) {//every obj get a MAP
+        	 Map m = (Map)obj;
+        	 System.out.println(m.get("lid") + " "+m.get("lname"));
+        }
+        
         tx.commit();
 
  
