@@ -24,7 +24,7 @@ public class Student {
    
 @Override
 public String toString() {
-	return "Student [rollno=" + rollno + ", name=" + name + ", marks=" + marks + ", laptop=" + laptop + "]";
+	return "Student [rollno=" + rollno + ", name=" + name + ", marks=" + marks + "]";
 }
 public List<Laptop> getLaptop() {
 	return laptop;

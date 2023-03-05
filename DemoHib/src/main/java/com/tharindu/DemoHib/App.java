@@ -27,40 +27,40 @@ public class App
         
         SessionFactory sf = con.buildSessionFactory(reg);
         
+   
 
-        /////////by default second level cache only support get method in session not HQL . /////////////////////////
-        ///////// <property name="hibernate.cache.use_query_cache">true</property> for second level query caching////////////////////
-        Laptop laptop = new Laptop();
         Transaction tx;
         
         Session session = sf.openSession();/////////create session 1////////////////////
         tx = session.beginTransaction();
         
-        Query q1 =  session.createQuery("from Laptop where lid=101");
-        q1.setCacheable(true);
-        laptop = (Laptop) q1.uniqueResult();
-        System.out.println(laptop.getLname());
+        
+        //difference between SQL and HQL ---> 
+           /*
+            * 1. HQL use class name for Table in SQL
+            * from Laptop ---> fetch all the laptop details
+            * 
+            * 
+            * */
+        
+        
+        //fetch specific data
+//        Query q1 =  session.createQuery("select lid,lname,student from Laptop where lid=101");
+//        Object[] l = (Object[]) q1.uniqueResult(); 
+//        System.out.println(l[2]);
+        
+        //fetch list of data using HQL
+        Query q1 =  session.createQuery("from Laptop order by lname asc");
+        List laptops =  q1.list();
+//        for(Laptop l : laptops) {
+//        	Student s = new Student();
+//        	s=l.getStudent();
+//        	System.out.println("Laptop [lid=" + l.getLid() + ", lname=" + l.getLname() + "sname "+s.getName() + "]");
+//        }
+        
+    
         tx.commit();
-        //or
-        //session.getTransaction().commit();
-        session.close();
-        
-       
-        Session session2 = sf.openSession(); /////////create session 2////////////////////
-        tx = session2.beginTransaction();        
-        
-        Query q2 = session2.createQuery("from Laptop where lid=101");
-        q2.setCacheable(true);
-        laptop = (Laptop) q2.uniqueResult();
-        System.out.println(laptop.getLname());
-        tx.commit();
-        //or
-        //session2.getTransaction().commit();
-        session2.close();
-        
-        
 
-        
-        
+ 
     }
 }
