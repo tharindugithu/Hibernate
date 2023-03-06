@@ -36,24 +36,30 @@ public class App
         
         Session session = sf.openSession();
         tx = session.beginTransaction();
-        ////////////fetching entire row in table////////////////////////
-//        SQLQuery sqlQuery = session.createSQLQuery("select * from laptop where lid=101");
-//        sqlQuery.addEntity(Laptop.class);
-//        List <Laptop> laptops = sqlQuery.list();
+        //////////update//////////////
+//        Student s = (Student)session.get(Student.class, 3);
+//        Laptop laptop = new Laptop();
+//        laptop.setLname("MSI22");
+//        laptop.setLid(106);
+//        laptop.setStudent(s);
+//        
+//        session.update(laptop);
+        
+        
+        
+        
+        /////delete///////////////////
+        /*
+         * we can fetch the data using get or load method
+         * */
+       // Student s = (Student)session.get(Student.class, 1);
+//        List<Laptop> laptops =  s.getLaptop();
 //        for(Laptop l : laptops) {
-//        	System.out.println(l.getLname());
+//        	session.delete(l);
 //        }
-        /////////////////fetching specific colounm///////////////////
-        SQLQuery sqlQuery = session.createSQLQuery("select lid,lname from laptop");
-        sqlQuery.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);//this will convert to output in MAP format
-        
-        List laptops = sqlQuery.list();// not a student obj
-        
-        for(Object obj : laptops) {//every obj get a MAP
-        	 Map m = (Map)obj;
-        	 System.out.println(m.get("lid") + " "+m.get("lname"));
-        }
-        
+//        session.delete(s);
+
+        System.out.println("hee");
         tx.commit();
 
  
